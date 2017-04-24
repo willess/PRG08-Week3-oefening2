@@ -10,7 +10,6 @@ Jibby is een beestje dat jij in leven zal moeten houden. Dit doe je door hem aan
 
 ## Opdracht
 
-- Teken een UML voor Jibby
 - In de game loop hou je bij hoeveel eten Jibby nog heeft, hoe schoon en hoe happy hij nog is. Toon dit in de interface.
 - Gebruik het strategy pattern om het gedrag van Jibby te programmeren. Begin met Idle, Sleeping, Dead
 - De gedragingen hebben elk een eigen afbeelding. Dit kan je aanpassen met `div.classList.add("idle");`.
