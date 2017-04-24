@@ -6,16 +6,27 @@ var Jibby = (function () {
         this.x = 0;
         this.y = 220;
         this.hygiene = this.food = this.happyness = 50;
-        this.div.classList.add("idle");
-        this.div.addEventListener("click", function () { return _this.onClick(); });
+        this.div.style.backgroundImage = "url('images/idle.png')";
+        this.div.addEventListener("click", function () { return _this.onPet(); });
+        document.getElementsByTagName("foodbutton")[0].addEventListener("click", function () { return _this.onEat(); });
+        document.getElementsByTagName("washbutton")[0].addEventListener("click", function () { return _this.onWash(); });
     }
     Jibby.prototype.update = function () {
         this.hygiene -= 0.01;
-        this.food -= 0.01;
-        this.happyness -= 0.01;
+        this.food -= 0.02;
+        this.happyness -= 0.015;
     };
-    Jibby.prototype.onClick = function () {
-        console.log("you clicked!");
+    Jibby.prototype.onPet = function () {
+        console.log("you clicked on jibby!");
+        this.div.style.backgroundImage = "url('images/happy.png')";
+    };
+    Jibby.prototype.onWash = function () {
+        console.log("washing jibby!");
+        this.div.style.backgroundImage = "url('images/washing.png')";
+    };
+    Jibby.prototype.onEat = function () {
+        console.log("jibby is eating!");
+        this.div.style.backgroundImage = "url('images/eating.gif')";
     };
     return Jibby;
 }());

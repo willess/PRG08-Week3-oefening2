@@ -10,21 +10,26 @@ Jibby is een beestje dat jij in leven zal moeten houden. Dit doe je door hem aan
 
 ## Opdracht
 
-- In de game loop hou je bij hoeveel eten Jibby nog heeft, hoe schoon en hoe happy hij nog is. Toon dit in de interface.
-- Gebruik het strategy pattern om het gedrag van Jibby te programmeren. Begin met Idle, Sleeping, Dead
-- De gedragingen hebben elk een eigen afbeelding. Dit kan je aanpassen met `div.classList.add("idle");`.
-- De game begint met het gedrag 'idle'. Hierin doet Jibby niets. Als dit te lang duurt verandert het gedrag in Sleeping.
-- Het Sleeping gedrag is dat hij na een tijdje weer wakker wordt.
-- Als tijdens de game loop het voedsel, hygiene of happyness op 0 komt gaat Jibby dood... Ook dit is een gedrag.
+- Gebruik het strategy pattern om het gedrag van Jibby te programmeren. Begin met Idle, Sleeping en Dead. Implementeer de bestaande interface.
+- In de game loop roep je de update functie van jibby aan. Jibby roept daarna de update functie van zijn huidige gedrag aan.
+- Het idle gedrag vermindert bij elke update de health, food en happyness waarden.
+- Als daarna het voedsel, hygiene of happyness op 0 komt krijgt Jibby het 'Dead' gedrag.
+- Als de waarden bijna bij 0 zijn kan je een gedrag tonen voor Hungry, Angry of Dirty!
+- Bekijk de voorbeeldcode van de strategy. Hier zie je hoe je vanuit het Idle gedrag weer een ander gedrag aan jibby kan toekennen.
+
+## Automatisch gedrag
+
+- Elk gedrag krijgt een timer waarde. In de update van het gedrag verminder je die waarde. Na een aantal seconden verander je van gedrag.
+- Idle gaat naar sleeping. Elk ander gedrag gaat naar Idle. Dead verandert niet.
 
 ## Buttons
 
-- De knoppen wassen, eten geven, aaien veranderen het gedrag van Jibby.
-- De click eventListeners zijn onderdeel van jibby.ts en game.ts. 
-- Echter, ze roepen de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag** van jibby aan.
+- Maak drie nieuwe gedragingen: Eating, Washing, Happy
+- De drie click eventListeners en handlers staan in jibby.ts
+- De click handlers van Jibby verwijzen weer door naar de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag**.
 - Op die manier kan Jibby anders op de knoppen reageren als hij iets aan het doen is.
-- Wat voor gedrag heb je allemaal nodig? Wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Wat gebeurt er als je hem wast terwijl hij slaapt?
-- Wat zou er gebeuren als je Jibby aanraakt terwijl hij dood is...
+- Wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Wat gebeurt er als je hem wast terwijl hij slaapt?
+- Wat zou er gebeuren als je Jibby aanraakt terwijl hij dood is... :(
 
 ## Resultaat
 
@@ -33,27 +38,35 @@ Jibby is een beestje dat jij in leven zal moeten houden. Dit doe je door hem aan
 ## Strategy Pattern Voorbeeld
 
 ```
-class Person {
-    private myBehavior:Behavior;
+class Jibby {
+    public myBehavior:Behavior;
     constructor(){
-        this.myBehavior = new Jump(this);
-        this.myBehavior.execute();
+        this.myBehavior = new Jumping(this);
+    }
+    public update(){
+        this.myBehavior.update();
     }
 }
 
-class Jump implements Behavior {
-    public person : Person;
-    constructor(p:Person){
-        this.person = p;
+class Jumping implements Behavior {
+    public jibby : Jibby;
+    public timer : number;
+    constructor(j:Jibby){
+        this.jibby = j;
+        this.timer = 100;
     }
-    public execute(){
-        console.log("I am Jumping!");
+    public update(){
+        // aftellen
+        this.timer--;
+        // het gedrag van Jibby aanpassen
+        this.jibby.myBehavior = new Sleeping(this.jibby);
     }
 }
 
 interface Behavior {
-    person:Person;
-    execute() : void;
+    jibby:Jibby;
+    timer:number;
+    update() : void;
 }
 ```
 
@@ -62,7 +75,7 @@ interface Behavior {
 De game heeft drie click listeners. De code voor de 'onClick' handlers staat in het gedrag.
 
 ```
-class Test {
+class Jibby {
     constructor(){
         // listener toevoegen
         washButton.addEventListener("click", (e:MouseEvent) => this.onWash(e));
@@ -73,3 +86,6 @@ class Test {
     }
 }
 ```
+### Afbeeldingen aanpassen
+
+`element.style.backgroundImage = "url('idle.png')"`
