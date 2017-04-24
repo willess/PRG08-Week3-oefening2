@@ -12,18 +12,19 @@ Jibby is een beestje dat jij in leven zal moeten houden. Dit doe je door hem aan
 
 - Teken een UML voor Jibby
 - In de game loop hou je bij hoeveel eten Jibby nog heeft, hoe schoon en hoe happy hij nog is. Toon dit in de interface.
-- Gebruik het strategy pattern om het gedrag van Jibby te programmeren
-- De game begint met het gedrag 'idle'. Hierin doet Jibby niets.
-- Als Jibby te lang niets doet valt hij in slaap. Programmeer dit gedrag.
-- Als voedsel, hygiene of happyness op 0 komt gaat Jibby dood... Ook dit is een gedrag.
+- Gebruik het strategy pattern om het gedrag van Jibby te programmeren. Begin met Idle, Sleeping, Dead
+- De gedragingen hebben elk een eigen afbeelding. Dit kan je aanpassen met `div.classList.add("idle");`.
+- De game begint met het gedrag 'idle'. Hierin doet Jibby niets. Als dit te lang duurt verandert het gedrag in Sleeping.
+- Het Sleeping gedrag is dat hij na een tijdje weer wakker wordt.
+- Als tijdens de game loop het voedsel, hygiene of happyness op 0 komt gaat Jibby dood... Ook dit is een gedrag.
 
 ## Buttons
 
 - De knoppen wassen, eten geven, aaien veranderen het gedrag van Jibby.
-- De click eventListeners zijn onderdeel van jibby.ts
-- Echter, ze roepen de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag** aan.
+- De click eventListeners zijn onderdeel van jibby.ts en game.ts. 
+- Echter, ze roepen de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag** van jibby aan.
 - Op die manier kan Jibby anders op de knoppen reageren als hij iets aan het doen is.
-- Wat voor gedrag heb je allemaal nodig? Wat gebeurt er als je Jibby aait terwijl hij aan het eten is?
+- Wat voor gedrag heb je allemaal nodig? Wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Wat gebeurt er als je hem wast terwijl hij slaapt?
 - Wat zou er gebeuren als je Jibby aanraakt terwijl hij dood is...
 
 ## Resultaat
