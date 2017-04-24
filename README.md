@@ -50,14 +50,10 @@ class Jibby {
 
 class Jumping implements Behavior {
     public jibby : Jibby;
-    public timer : number;
     constructor(j:Jibby){
         this.jibby = j;
-        this.timer = 100;
     }
     public update(){
-        // aftellen
-        this.timer--;
         // het gedrag van Jibby aanpassen
         this.jibby.myBehavior = new Sleeping(this.jibby);
     }
@@ -65,7 +61,6 @@ class Jumping implements Behavior {
 
 interface Behavior {
     jibby:Jibby;
-    timer:number;
     update() : void;
 }
 ```
