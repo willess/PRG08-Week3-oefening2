@@ -2,11 +2,11 @@
 
 ## Jibby
 
-Jibby is een beestje dat jij in leven zal moeten houden. Dit doe je door hem aandacht te geven, eten te geven en schoon te houden. Maar let op, wanneer je je aandacht laat wegzakken en Jibby niet goed onderhoudt zal Jibby dit laten merken! Je zal acties moeten ondernemen om de status op de onderdelen Hygiene, Tevredenheid, Voeding op peil te houden. Dit doe je door opdrachten uit te voeren. Je kunt verschillende acties uitvoeren zoals:
+Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in leven zal moeten houden. Dit doe je door hem aandacht te geven, eten te geven en schoon te houden. Wanneer je je aandacht laat wegzakken en Jibby niet goed onderhoudt zal Jibby doodongelukkig worden! Je kunt Jibby in leven houden door:
 
-- Douchen. Dit doe je door op het douche icoontje te klikken. Het douchen duurt 4 seconden en na het douchen zal Jibby automatisch terug gaan naar zijn standaard (Idle) status.
-- Eten. Door op het icoontje met de appel te klikken geef je Jibby te eten. Dit duurt 3 seconden en ook hierna komt Jibby automatisch in zijn standaard status terug.
-- Aaien. Door met de muis op Jibby te klikken geef je hem aandacht en zal zijn tevredenheid toenemen.
+- Douchen. Het douchen duurt 4 seconden en na het douchen zal Jibby automatisch terug naar de Idle status.
+- Eten. Het eten duurt 3 seconden en ook hierna komt Jibby automatisch in zijn Idle status terug.
+- Aaien. Door met de muis op Jibby te klikken geef je hem aandacht en zal zijn tevredenheid toenemen. Als je te vaak aan hem zit raakt wordt hij boos.
 
 ## Opdracht
 
