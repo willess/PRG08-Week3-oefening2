@@ -35,6 +35,8 @@ Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in le
 
 ![Jibby](jibbyresult.png?raw=true "Jibby")
 
+[Speel de Jibby Game](https://hr-cmgt.github.io/PRG08-Week3-oefening2-completed/)
+
 ## Strategy Pattern Voorbeeld
 
 ```
