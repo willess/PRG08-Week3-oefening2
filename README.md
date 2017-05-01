@@ -29,7 +29,7 @@ Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in le
 - De click handlers van Jibby verwijzen weer door naar de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag**.
 - Op die manier kan Jibby anders op de knoppen reageren als hij iets aan het doen is.
 - Wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Wat gebeurt er als je hem wast terwijl hij slaapt?
-- Wat zou er gebeuren als je Jibby aanraakt terwijl hij dood is... :(
+- Kan je Jibby nog reanimeren als hij net dood is gegaan?
 
 ## Resultaat
 
