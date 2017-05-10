@@ -2,34 +2,41 @@
 
 ## Jibby
 
-Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in leven zal moeten houden. Dit doe je door hem aandacht te geven, eten te geven en schoon te houden. Wanneer je je aandacht laat wegzakken en Jibby niet goed onderhoudt zal Jibby doodongelukkig worden! Je kunt Jibby in leven houden door:
+Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in leven zal moeten houden. Dit doe je door hem aandacht te geven, eten te geven en schoon te houden. Wanneer je je aandacht laat wegzakken en Jibby niet goed onderhoudt zal Jibby doodongelukkig worden en uiteindelijk dood gaan door een gebrek aan eten, aandacht of hygiene. Wat kan je doen om dit te voorkomen?
 
-- Douchen. Het douchen duurt 4 seconden en na het douchen zal Jibby automatisch terug naar de Idle status.
-- Eten. Het eten duurt 3 seconden en ook hierna komt Jibby automatisch in zijn Idle status terug.
-- Aaien. Door met de muis op Jibby te klikken geef je hem aandacht en zal zijn tevredenheid toenemen. Als je te vaak aan hem zit raakt wordt hij boos.
+- Douchen. Hiervan wordt jibby schoon en blij. 
+- Eten. Hiervan wordt jibby blij en minder hongerig.
+- Aaien. Door met de muis op Jibby te klikken geef je hem aandacht en wordt hij blij. 
+- Slapen. Als er een tijdje niks gebeurt valt Jibby in slaap. Daarvan wordt hij blij, maar als hij wakker is heeft hij wel honger.
 
-## Opdracht
+## Opdracht deel 1
 
-- Gebruik het strategy pattern om het gedrag van Jibby te programmeren. Begin met Idle, Sleeping en Dead. Implementeer de bestaande interface.
+- Gebruik het strategy pattern om het Idle en Dead gedrag te bouwen. Implementeer de bestaande interface.
 - In de game loop roep je de update functie van jibby aan. Jibby roept daarna de update functie van zijn huidige gedrag aan.
 - Het idle gedrag vermindert bij elke update de health, food en happyness waarden.
-- Als daarna het voedsel, hygiene of happyness op 0 komt krijgt Jibby het 'Dead' gedrag.
-- Als de waarden bijna bij 0 zijn kan je een gedrag tonen voor Hungry, Angry of Dirty!
-- Bekijk de voorbeeldcode van de strategy. Hier zie je hoe je vanuit het Idle gedrag weer een ander gedrag aan jibby kan toekennen.
+- Als een van die waarden te laag wordt kan je het texture van Jibby veranderen in hungry, dirty of angry.
+- Als een van die waarden op 0 komt krijgt Jibby het 'Dead' gedrag. Bekijk de voorbeeldcode om te zien hoe je vanuit Idle naar een ander gedrag kan gaan.
+- Als je dit gedeelte werkend hebt kan je verder met deel 2.
 
-## Automatisch gedrag
+## Opdracht deel 2
 
-- Elk gedrag krijgt een timer waarde. In de update van het gedrag verminder je die waarde. Na een aantal seconden verander je van gedrag.
-- Idle gaat naar sleeping. Elk ander gedrag gaat naar Idle. Dead verandert niet.
+- Maak de nieuwe gedragingen: Eating, Washing, Happy
+- Voeg de methods `onEat()`, `onWash()` en `onPet()` toe aan de interface
+- Implementeer die methods in de gedragingen Idle, Sleeping, Eating, Washing, Dead en Happy
+- Zie het code voorbeeld voor het aanroepen van de functies nadat er geklikt is.
+- Programmeer hoe Jibby op de drie knoppen reageert, maak dit afhankelijk van het huidige gedrag! Bijvoorbeeld: wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Of als je hem onder de douche zet terwijl hij slaapt?
 
-## Buttons
+## Opdracht deel 3
 
-- Maak drie nieuwe gedragingen: Eating, Washing, Happy
-- De drie click eventListeners en handlers staan in jibby.ts
-- De click handlers van Jibby verwijzen weer door naar de `onEat()`, `onWash()` en `onPet()` functies **van het huidige gedrag**.
-- Op die manier kan Jibby anders op de knoppen reageren als hij iets aan het doen is.
-- Wat gebeurt er als je Jibby aait terwijl hij aan het eten is? Wat gebeurt er als je hem wast terwijl hij slaapt?
-- Kan je Jibby nog reanimeren als hij net dood is gegaan?
+Maak een nieuw gedrag `Sleeping`. Elk gedrag krijgt een timer waarde. In de update van het gedrag verminder je die waarde. Als de timer op 0 staat verander je van gedrag. Zie de voorbeeldcode.
+
+- Idle gaat naar Sleeping 
+- Sleeping, Eating, Showering en Happy gaan naar Idle. 
+- Dead reageert niet op de timer
+
+## Nog meer gedrag ?
+
+- Kan je zelf een gedrag toevoegen?
 
 ## Resultaat
 
@@ -37,27 +44,26 @@ Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in le
 
 [Speel de Jibby Game](https://hr-cmgt.github.io/PRG08-Week3-oefening2-completed/)
 
-## Strategy Pattern Voorbeeld
+### Strategy Pattern
 
 ```
 class Jibby {
-    public myBehavior:Behavior;
+    public behavior:Behavior;
     constructor(){
-        this.myBehavior = new Jumping(this);
+        this.behavior = new Sleeping(this);
     }
     public update(){
-        this.myBehavior.update();
+        this.behavior.update();
     }
 }
 
-class Jumping implements Behavior {
+class Sleeping implements Behavior {
     public jibby : Jibby;
     constructor(j:Jibby){
         this.jibby = j;
     }
     public update(){
-        // het gedrag van Jibby aanpassen
-        this.jibby.myBehavior = new Sleeping(this.jibby);
+        // hier het sleeping gedrag programmeren
     }
 }
 
@@ -67,22 +73,45 @@ interface Behavior {
 }
 ```
 
-### Event Listeners 
+### Idle gedrag Voorbeeld
 
-De game heeft drie click listeners. De code voor de 'onClick' handlers staat in het gedrag.
+In dit voorbeeld zie je hoe 'Idle' telkens de happyness van Jibby verlaagt, en hoe je naar een ander gedrag kan springen.
+```
+public update(){
+    this.jibby.happyness--;
+    this.jibby.behavior = new Sleeping(this.jibby);
+}
+        
+```
+
+### Timer Voorbeeld
+
+In dit voorbeeld zie je hoe een gedrag kan bijhouden hoe lang dat gedrag al duurt.
+```
+private timer:number = 100;
+public update(){
+    this.timer--;
+    if(this.timer < 1){
+        // iets doen als de tijd op is
+    }
+}
+```
+
+### Button Listeners 
+
+In dit voorbeeld zie je hoe je het gedrag van de drie buttons ook in de strategy pattern kan plaatsen. De event listeners kunnen in de Jibby class blijven.
 
 ```
 class Jibby {
     constructor(){
-        // listener toevoegen
         washButton.addEventListener("click", (e:MouseEvent) => this.onWash(e));
     }
 
     private onWash(e:MouseEvent):void {
-        // hier de wash handler van het huidige gedrag aanroepen
+        this.behavior.onWash();
     }
 }
 ```
 ### Afbeeldingen aanpassen
 
-`element.style.backgroundImage = "url('idle.png')"`
+`this.jibby.div.style.backgroundImage = "url('idle.png')"`
