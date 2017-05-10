@@ -28,15 +28,19 @@ Jibby is een [tamagotchi](https://en.wikipedia.org/wiki/Tamagotchi) die je in le
 
 ## Opdracht deel 3
 
-Maak een nieuw gedrag `Sleeping`. Elk gedrag krijgt een timer waarde. In de update van het gedrag verminder je die waarde. Als de timer op 0 staat verander je van gedrag. Zie de voorbeeldcode.
+Maak een nieuw gedrag `Sleeping`. Geef elk gedrag een timer waarde. In de update van elk gedrag verminder je die waarde. Als de timer op 0 staat verander je van gedrag. Zie de voorbeeldcode.
 
 - Idle gaat naar Sleeping 
 - Sleeping, Eating, Showering en Happy gaan naar Idle. 
 - Dead reageert niet op de timer
 
-## Nog meer gedrag ?
+## Nog meer gedrag?
 
 - Kan je zelf een gedrag toevoegen?
+
+## Inheritance of interface?
+
+- Zou het handig zijn om met inheritance te werken voor het gedrag?
 
 ## Resultaat
 
