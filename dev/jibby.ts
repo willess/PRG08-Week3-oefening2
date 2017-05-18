@@ -1,5 +1,7 @@
 class Jibby {
 
+    public behaviour: Behavior;
+
     public hygiene:number;
     public food:number;
     public happyness:number;
@@ -23,7 +25,7 @@ class Jibby {
         document.getElementsByTagName("washbutton")[0].addEventListener("click", () => this.onWash());
 
         // hier het gedrag toekennen
-        // this.behavior = ...
+        this.behaviour = new Idle(this);
         
         // afbeelding voor idle - verplaatsen naar idle gedrag
         this.div.style.backgroundImage = "url('images/idle.png')";
@@ -31,28 +33,26 @@ class Jibby {
 
     public update():void {
         // hier het gedrag updaten
-        // ...
-        
-        // waarden verlagen per frame - dit moet in het gedrag staan
-        this.hygiene -= 0.01;
-        this.food -= 0.02;
-        this.happyness -= 0.015;
+        this.behaviour.performBehavior();
     }
 
-
+ 
     private onPet():void {
         console.log("you clicked on jibby!");
         // hier moet je de onPet functie van het gedrag aanroepen
+        this.behaviour.onPet();
     }
 
     private onWash():void {
         console.log("washing jibby!");
         // hier moet je de onWash functie van het gedrag aanroepen
+        this.behaviour.onWash();
     }
 
     private onEat():void {
         console.log("jibby is eating!");
         // hier moet je de onEat functie van het gedrag aanroepen
+        this.behaviour.onEat();
     }
 
 
